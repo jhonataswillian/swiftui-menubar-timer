@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct FocusBearApp: App {
+    @StateObject var manager = SprintManager()
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        MenuBarExtra {
+            MainView(manager: manager)
+        } label: {
+            let image = manager.isRunning ? "stopwatch.fill" : "stopwatch"
+            Image(systemName: image)
         }
+        .menuBarExtraStyle(.window)
     }
 }
